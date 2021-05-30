@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { signIn } from 'next-auth/client';
-import {Button} from 'react-bootstrap'
+import { Form, Button, Row, Col } from 'react-bootstrap';
+import FormContainer from '../../components/FormContainer';
+import Link from 'next/link';
+
 export default () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -21,26 +24,39 @@ export default () => {
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <FormContainer>
       <h1>Sign In</h1>
-      <div className="form-group">
-        <label>Email Address</label>
-        <input
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="form-control"
-        />
-      </div>
-      <div className="form-group">
-        <label>Password</label>
-        <input
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          type="password"
-          className="form-control"
-        />
-      </div>
-      <Button className="btn btn-primary">Sign In</Button>
-    </form>
+      <Form onSubmit={onSubmit}>
+        <Form.Group controlId="email">
+          <Form.Label>Email Address</Form.Label>
+          <Form.Control
+            type="email"
+            placeholder="Enter email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          ></Form.Control>
+        </Form.Group>
+
+        <Form.Group controlId="password">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Enter password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          ></Form.Control>
+        </Form.Group>
+
+        <Button type="submit" variant="primary">
+          Sign In
+        </Button>
+      </Form>
+
+      <Row className="py-3">
+        <Col>
+          New User? <Link href="/auth/signup">Register</Link>
+        </Col>
+      </Row>
+    </FormContainer>
   );
 };

@@ -7,4 +7,11 @@ module.exports = {
 
     return config;
   },
+  images: {
+    domains: [
+      'avatars.githubusercontent.com',
+      'scontent.fnbe1-2.fna.fbcdn.net',
+      'lh3.googleusercontent.com',
+    ],
+  },
 };

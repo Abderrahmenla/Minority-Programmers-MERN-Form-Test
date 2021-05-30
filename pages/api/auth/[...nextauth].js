@@ -26,6 +26,12 @@ const options = {
     signIn: '/auth/signin',
   },
   database: process.env.MONGODB_URI,
+  callbacks: {
+    session: async (session, user) => {
+      session.id = user.id;
+      return Promise.resolve(session);
+    },
+  },
 };
 
 export default (req, res) => NextAuth(req, res, options);
