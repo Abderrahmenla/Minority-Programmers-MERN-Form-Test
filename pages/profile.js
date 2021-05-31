@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Form, Button, Row, Col, Container } from 'react-bootstrap';
 import Loader from '../components/loader';
 import Message from '../components/message';
 import { useSession } from 'next-auth/client';
 import Image from 'next/image';
+import Router from 'next/router';
 
 export default function profile() {
   const [session, loading] = useSession();
@@ -21,31 +22,17 @@ export default function profile() {
       `http://localhost:3000/api/user?progLang=${progLang}&nativeLang=${nativeLang}&passions=${passions}`
     );
     const res = await data.json();
-    console.log(res, 'yolo');
+    Router.push('/profile');
   };
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const res = await fetch('/api/user');
-  //     const json = await res.json();
-  //     if (json.content) {
-  //       setContent(json.content);
-  //     }
-  //   };
-  //   fetchData();
-  // }, [session]);
   if (typeof window !== 'undefined' && loading) return null;
-  if (!session) {
-    return <Message variant="danger">Please sign in</Message>;
-  } else {
+  if (!session) return <Message variant="danger">Please sign in</Message>;
+  else {
     return (
-      <Container>
+      <Container style={{ background: '#fff' }}>
         <Row>
           <Col md={9}>
             <h2>User Profile</h2>
-
-            {session && (
-              <Image src={session.user.image} alt="mp" width="64" height="64" />
-            )}
+            <Image src={session.user.image} alt="mp" width="64" height="64" />
             <Form onSubmit={submitHandler}>
               <Form.Group controlId="name">
                 <Form.Label>Full name</Form.Label>
@@ -66,38 +53,34 @@ export default function profile() {
                   onChange={(e) => setEmail(e.target.value)}
                 ></Form.Control>
               </Form.Group>
-              {session.user.image.indexOf('github') != -1 && (
-                <>
-                  <Form.Group controlId="progLang">
-                    <Form.Label>Programming languages</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder={progLang}
-                      value={progLang}
-                      onChange={(e) => setProgLang(e.target.value)}
-                    ></Form.Control>
-                  </Form.Group>
-                  <Form.Group controlId="nativeLang">
-                    <Form.Label>Native languages</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder={nativeLang}
-                      value={nativeLang}
-                      onChange={(e) => setNativeLang(e.target.value)}
-                    ></Form.Control>
-                  </Form.Group>
-                  <Form.Group controlId="passion">
-                    <Form.Label>Passions</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder={passions}
-                      value={passions}
-                      onChange={(e) => setPassions(e.target.value)}
-                    ></Form.Control>
-                  </Form.Group>
-                </>
-              )}
 
+              <Form.Group controlId="progLang">
+                <Form.Label>Programming languages</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder={progLang}
+                  value={progLang}
+                  onChange={(e) => setProgLang(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
+              <Form.Group controlId="nativeLang">
+                <Form.Label>Native languages</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder={nativeLang}
+                  value={nativeLang}
+                  onChange={(e) => setNativeLang(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
+              <Form.Group controlId="passion">
+                <Form.Label>Passions</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder={passions}
+                  value={passions}
+                  onChange={(e) => setPassions(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
               <Form.Group controlId="password">
                 <Form.Label>Password</Form.Label>
                 <Form.Control

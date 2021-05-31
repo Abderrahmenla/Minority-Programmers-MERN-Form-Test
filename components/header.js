@@ -13,21 +13,21 @@ export default function Header() {
   };
   const handleSignout = (e) => {
     e.preventDefault();
-    signOut({ callbackUrl: 'http://localhost:3000/auth/signout' });
+    signOut({ callbackUrl: 'http://localhost:3000/signout' });
   };
   const handleSignup = (e) => {
     e.preventDefault();
-    Router.push('/auth/signup');
+    Router.push('/signup');
   };
   const handleProfile = (e) => {
     e.preventDefault();
     Router.push('/profile');
   };
   const links = [
-    !session && { label: 'Join', href: '/auth/signup' },
-    !session && { label: 'Sign In', href: '/auth/signin' },
+    !session && { label: 'Join', href: '/signup' },
+    !session && { label: 'Sign In', href: '/signin' },
     session && { label: 'Profile', href: '/profile' },
-    session && { label: 'Sign Out', href: '/auth/signout' },
+    session && { label: 'Sign Out', href: '/signout' },
   ]
     .filter((linkConfig) => linkConfig)
     .map(({ label, href }) => {
@@ -60,7 +60,6 @@ export default function Header() {
         <Link href="https://twitter.com/minorityprogram" passHref={true}>
           <Nav.Link key={7}>
             <FontAwesomeIcon icon={['fab', 'twitter']} />
-            yalay
           </Nav.Link>
         </Link>
         <Link
@@ -69,7 +68,6 @@ export default function Header() {
         >
           <Nav.Link key={6}>
             <FontAwesomeIcon icon={['fab', 'facebook']} />
-            yolo
           </Nav.Link>
         </Link>
         <Link
@@ -78,7 +76,6 @@ export default function Header() {
         >
           <Nav.Link key={5}>
             <FontAwesomeIcon icon={['fab', 'linkedin']} />
-            yoo
           </Nav.Link>
         </Link>
         <Link
@@ -87,11 +84,10 @@ export default function Header() {
         >
           <Nav.Link key={4}>
             <FontAwesomeIcon icon={['fab', 'instagram']} />
-            bara
           </Nav.Link>
         </Link>
       </Nav>
-      <Nav className="d-flex justify-content-end">
+      <Nav className="navi">
         <Nav.Link key={1}>Service</Nav.Link>
         <Nav.Link key={2}>Events</Nav.Link>
         <Nav.Link key={3}>Learn</Nav.Link>

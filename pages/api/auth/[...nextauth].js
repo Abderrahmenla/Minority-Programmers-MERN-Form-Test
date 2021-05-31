@@ -23,7 +23,7 @@ const options = {
     }),
   ],
   pages: {
-    signIn: '/auth/signin',
+    signIn: '/signin',
   },
   database: process.env.MONGODB_URI,
   callbacks: {

@@ -1,28 +1,18 @@
 import { useState } from 'react';
 import Router from 'next/router';
-import useRequest from '../../hooks/use-request';
 import { signIn, useSession } from 'next-auth/client';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Message from '../../components/message';
+import Message from '../components/message';
 import { Form, Button, Row, Col, Container } from 'react-bootstrap';
-import FormContainer from '../../components/FormContainer';
+import FormContainer from '../components/FormContainer';
 import Image from 'next/image';
 
-export default () => {
+export default function signup() {
   const [session] = useSession();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { doRequest, errors } = useRequest({
-    url: '/api/signup',
-    method: 'post',
-    body: {
-      email,
-      password,
-    },
-    onSuccess: () => Router.push('/'),
-  });
   const handleSigninGoogle = (e) => {
     e.preventDefault();
     signIn('google');
@@ -42,28 +32,42 @@ export default () => {
   };
   const onSubmit = async (event) => {
     event.preventDefault();
-    await doRequest();
   };
   if (session) {
     return <Message variant="danger">You're already signed in</Message>;
   } else {
     return (
-      <Container className="mx-auto my-2">
+      <Container
+        style={{
+          padding: '5% 3%',
+        }}
+      >
         <Row>
-          <Col
-            style={{
-              backgroundImage:
-                'url(' +
-                'https://images.pexels.com/photos/34153/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350' +
-                ')',
-              backgroundPosition: 'center',
-              backgroundSize: 'cover',
-              backgroundRepeat: 'no-repeat',
-            }}
-          >
+          <Col className="register">
             <Image src="/mp_asset_icon.svg" alt="mp" width="64" height="64" />
-            <div>
-              <h1>yolo</h1>
+            <div
+              style={{
+                width: '400px',
+                height: '300px',
+                position: 'absolute',
+                top: '40%',
+                left: '15%',
+              }}
+            >
+              <h2
+                style={{
+                  color: '#fff',
+                  textAlign: 'center',
+                  fontSize: '37px',
+                  justifyContent: 'left',
+                }}
+              >
+                Register for MPA
+              </h2>
+              <h5 style={{ color: '#fff', textAlign: 'center' }}>
+                To keep connecting with us please register with your personal
+                info
+              </h5>
             </div>
           </Col>
           <Col style={{ background: '#fff' }}>
@@ -76,7 +80,7 @@ export default () => {
                     <a>Login</a>
                   </Link>
                 </Col>
-                <Row>
+                <Row style={{ alignItems: 'center', justifyContent: 'center' }}>
                   <Col>
                     <Button onClick={handleSigninGithub}>
                       <FontAwesomeIcon icon={['fab', 'github']} />
@@ -132,7 +136,6 @@ export default () => {
                 <Button type="submit" variant="primary">
                   Register
                 </Button>
-                {errors}
               </Form>
             </FormContainer>
           </Col>
@@ -140,4 +143,4 @@ export default () => {
       </Container>
     );
   }
-};
+}

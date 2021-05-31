@@ -9,7 +9,7 @@ export default function Home({ isConnected }) {
   const signoutHandler = (event) => {
     event.preventDefault();
     signOut({
-      callbackUrl: 'http://localhost:3000/auth/signout',
+      callbackUrl: 'http://localhost:3000/signout',
     });
   };
   if (typeof window !== 'undefined' && loading) return null;
