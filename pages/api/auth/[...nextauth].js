@@ -2,7 +2,6 @@ import NextAuth from 'next-auth';
 import Providers from 'next-auth/providers';
 
 const options = {
-  site: 'https://tmp-nextjs-with-next-auth-app.vercel.app/',
   providers: [
     Providers.GitHub({
       clientId: process.env.GITHUB_ID,
@@ -46,7 +45,7 @@ const options = {
     }),
   ],
   pages: {
-    signIn: 'https://minority-programmers-mern-form-test.vercel.app/profile',
+    signIn: '/signin',
   },
   database: process.env.MONGODB_URI,
   callbacks: {
