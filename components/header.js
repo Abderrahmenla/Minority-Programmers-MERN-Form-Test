@@ -1,6 +1,5 @@
 import Link from 'next/link';
-import { signIn, signOut, useSession } from 'next-auth/client';
-import Router from 'next/router';
+import { signOut, useSession } from 'next-auth/client';
 import Image from 'next/image';
 import {
   MDBNavbar,
