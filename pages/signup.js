@@ -199,7 +199,7 @@ export default function signup() {
                   </div>
                   <div className="text-center mb-3">
                     <MDBBtn
-                      gradient="red"
+                      gradient="peach"
                       type="submit"
                       rounded
                       className="btn-block z-depth-1a"

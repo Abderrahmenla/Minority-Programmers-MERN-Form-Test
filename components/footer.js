@@ -14,7 +14,7 @@ const Footer = () => {
               <strong>About</strong>
             </h6>
             <hr
-              className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto"
+              className="pink accent-2 mb-4 mt-0 d-inline-block mx-auto"
               style={{ width: '60px' }}
             />
             <p>
@@ -27,7 +27,7 @@ const Footer = () => {
               <strong>Services</strong>
             </h6>
             <hr
-              className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto"
+              className="pink accent-2 mb-4 mt-0 d-inline-block mx-auto"
               style={{ width: '60px' }}
             />
             <p>
@@ -51,7 +51,7 @@ const Footer = () => {
               <strong>Explore</strong>
             </h6>
             <hr
-              className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto"
+              className="pink accent-2 mb-4 mt-0 d-inline-block mx-auto"
               style={{ width: '60px' }}
             />
             <p>
@@ -75,7 +75,7 @@ const Footer = () => {
               <strong>Contact</strong>
             </h6>
             <hr
-              className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto"
+              className="pink accent-2 mb-4 mt-0 d-inline-block mx-auto"
               style={{ width: '60px' }}
             />
             <p>
