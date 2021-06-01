@@ -22,24 +22,39 @@ export default function signin() {
   const [password, setPassword] = useState('');
   const handleSigninGoogle = (e) => {
     e.preventDefault();
-    signIn('google');
+    signIn('google', {
+      callbackUrl:
+        'http://minority-programmers-mern-form-test.vercel.app/profile',
+    });
   };
   const handleSigninFacebook = (e) => {
     e.preventDefault();
-    signIn('facebook');
+    signIn('facebook', {
+      callbackUrl:
+        'http://minority-programmers-mern-form-test.vercel.app/profile',
+    });
   };
   const handleSigninLinkedIn = (e) => {
     e.preventDefault();
-    signIn('linkedin');
+    signIn('linkedin', {
+      callbackUrl:
+        'http://minority-programmers-mern-form-test.vercel.app/profile',
+    });
   };
   const handleSigninGithub = (e) => {
     e.preventDefault();
-    signIn('github');
+    signIn('github', {
+      callbackUrl:
+        'http://minority-programmers-mern-form-test.vercel.app/profile',
+    });
   };
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    Router.push(`/profile`);
+    signIn('email', {
+      callbackUrl:
+        'http://minority-programmers-mern-form-test.vercel.app/profile',
+    });
   };
   if (typeof window !== 'undefined' && loading) return <Loader />;
   if (session) {
