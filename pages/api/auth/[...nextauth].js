@@ -1,8 +1,8 @@
 import NextAuth from 'next-auth';
 import Providers from 'next-auth/providers';
-
+// https://minority-programmers-mern-form-test.vercel.app
 const options = {
-  site: 'https://minority-programmers-mern-form-test.vercel.app',
+  site: 'https://tmp-nextjs-with-next-auth-app.vercel.app/',
   providers: [
     Providers.GitHub({
       clientId: process.env.GITHUB_ID,
@@ -22,12 +22,13 @@ const options = {
         },
       },
       from: process.env.EMAIL_FROM,
-      sendVerificationRequest: ({
+      sendVerificationRequest: {
         identifier: email,
         url,
         token,
         baseUrl,
         provider,
+      },
     }),
     Providers.LinkedIn({
       clientId: process.env.LINKEDIN_CLIENT_ID,
