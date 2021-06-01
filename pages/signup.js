@@ -27,28 +27,28 @@ export default function signup() {
     e.preventDefault();
     signIn('google', {
       callbackUrl:
-        'https://minority-programmers-mern-form-test.vercel.app//profile',
+        'http://minority-programmers-mern-form-test.vercel.app/profile',
     });
   };
   const handleSigninFacebook = (e) => {
     e.preventDefault();
     signIn('facebook', {
       callbackUrl:
-        'https://minority-programmers-mern-form-test.vercel.app//profile',
+        'http://minority-programmers-mern-form-test.vercel.app/profile',
     });
   };
   const handleSigninLinkedIn = (e) => {
     e.preventDefault();
     signIn('linkedin', {
       callbackUrl:
-        'https://minority-programmers-mern-form-test.vercel.app//profile',
+        'http://minority-programmers-mern-form-test.vercel.app/profile',
     });
   };
   const handleSigninGithub = (e) => {
     e.preventDefault();
     signIn('github', {
       callbackUrl:
-        'https://minority-programmers-mern-form-test.vercel.app//profile',
+        'http://minority-programmers-mern-form-test.vercel.app/profile',
     });
   };
   const onSubmit = async (event) => {
