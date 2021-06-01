@@ -25,19 +25,19 @@ export default function signup() {
   const [password, setPassword] = useState('');
   const handleSigninGoogle = (e) => {
     e.preventDefault();
-    signIn('google');
+    signIn('google', { callbackUrl: '/profile' });
   };
   const handleSigninFacebook = (e) => {
     e.preventDefault();
-    signIn('facebook');
+    signIn('facebook', { callbackUrl: '/profile' });
   };
   const handleSigninLinkedIn = (e) => {
     e.preventDefault();
-    signIn('linkedin');
+    signIn('linkedin', { callbackUrl: '/profile' });
   };
   const handleSigninGithub = (e) => {
     e.preventDefault();
-    signIn('github');
+    signIn('github', { callbackUrl: '/profile' });
   };
   const onSubmit = async (event) => {
     event.preventDefault();
