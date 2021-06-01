@@ -54,30 +54,55 @@ export default function Header() {
             >
               <MDBIcon fab icon="twitter" className="black-text pr-3" />
             </MDBNavLink>
+            <MDBNavItem>
+              <Link href="https://twitter.com/minorityprogram" passHref={true}>
+                <MDBNavLink
+                  className="waves-effect waves-light "
+                  to="https://www.facebook.com/MinorityProgrammers"
+                >
+                  <MDBIcon fab icon="twitter" className="black-text pr-3" />
+                </MDBNavLink>
+              </Link>
+            </MDBNavItem>
           </MDBNavItem>
           <MDBNavItem>
-            <MDBNavLink
-              className="waves-effect waves-light"
-              to="https://www.facebook.com/MinorityProgrammers"
+            <Link
+              href="https://www.facebook.com/MinorityProgrammers"
+              passHref={true}
             >
-              <MDBIcon fab icon="facebook" className="black-text pr-3" />
-            </MDBNavLink>
+              <MDBNavLink
+                className="waves-effect waves-light"
+                to="https://www.facebook.com/MinorityProgrammers"
+              >
+                <MDBIcon fab icon="facebook" className="black-text pr-3" />
+              </MDBNavLink>
+            </Link>
           </MDBNavItem>
           <MDBNavItem>
-            <MDBNavLink
-              className="waves-effect waves-light"
-              to="https://www.linkedin.com/company/minority-programmers/"
+            <Link
+              href="https://www.facebook.com/MinorityProgrammers"
+              passHref={true}
             >
-              <MDBIcon fab icon="linkedin" className="black-text pr-3" />
-            </MDBNavLink>
+              <MDBNavLink
+                className="waves-effect waves-light"
+                to="https://www.linkedin.com/company/minority-programmers/"
+              >
+                <MDBIcon fab icon="linkedin" className="black-text pr-3" />
+              </MDBNavLink>
+            </Link>
           </MDBNavItem>
           <MDBNavItem>
-            <MDBNavLink
-              className="waves-effect waves-light"
-              to="https://www.instagram.com/minorityprogrammers/"
+            <Link
+              href="https://www.instagram.com/minorityprogrammers/"
+              passHref={true}
             >
-              <MDBIcon fab icon="instagram" className="black-text pr-3" />
-            </MDBNavLink>
+              <MDBNavLink
+                className="waves-effect waves-light"
+                to="https://www.instagram.com/minorityprogrammers/"
+              >
+                <MDBIcon fab icon="instagram" className="black-text pr-3" />
+              </MDBNavLink>
+            </Link>
           </MDBNavItem>
         </MDBNavbarNav>
         <MDBNavbarNav right>
