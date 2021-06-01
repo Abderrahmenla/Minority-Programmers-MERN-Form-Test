@@ -8,7 +8,6 @@ export default async function user(req, res) {
   if (session) {
     const data = req.query;
     data._id = new mongodb.ObjectId(session.id);
-    console.log(session);
     data.name = session.user.name;
     data.email = session.user.email;
     data.image = session.user.image;

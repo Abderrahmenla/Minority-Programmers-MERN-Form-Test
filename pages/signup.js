@@ -1,12 +1,20 @@
 import { useState } from 'react';
-import Router from 'next/router';
 import { signIn, useSession } from 'next-auth/client';
 import Link from 'next/link';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Message from '../components/message';
-import { Form, Button, Row, Col, Container } from 'react-bootstrap';
-import FormContainer from '../components/FormContainer';
 import Image from 'next/image';
+import Router from 'next/router';
+import {
+  MDBContainer,
+  MDBRow,
+  MDBCol,
+  MDBCard,
+  MDBCardBody,
+  MDBInput,
+  MDBBtn,
+  MDBIcon,
+  MDBModalFooter,
+} from 'mdbreact';
 
 export default function signup() {
   const [session] = useSession();
@@ -16,7 +24,6 @@ export default function signup() {
   const handleSigninGoogle = (e) => {
     e.preventDefault();
     signIn('google');
-    console.log(session.user.name);
   };
   const handleSigninFacebook = (e) => {
     e.preventDefault();
@@ -32,18 +39,22 @@ export default function signup() {
   };
   const onSubmit = async (event) => {
     event.preventDefault();
+    const data = await fetch(
+      `http://localhost:3000/api/signup?email=${email}&password=${password}&name=${name}`
+    );
+    Router.push('/profile');
   };
   if (session) {
     return <Message variant="danger">You're already signed in</Message>;
   } else {
     return (
-      <Container
+      <MDBContainer
         style={{
           padding: '5% 3%',
         }}
       >
-        <Row>
-          <Col className="register">
+        <MDBRow>
+          <MDBCol className="register">
             <Image src="/mp_asset_icon.svg" alt="mp" width="64" height="64" />
             <div
               style={{
@@ -62,16 +73,16 @@ export default function signup() {
                   justifyContent: 'left',
                 }}
               >
-                Register for MPA
+                Register for MP
               </h2>
               <h5 style={{ color: '#fff', textAlign: 'center' }}>
                 To keep connecting with us please register with your personal
                 info
               </h5>
             </div>
-          </Col>
-          <Col style={{ background: '#fff' }}>
-            <FormContainer>
+          </MDBCol>
+          <MDBCol>
+            {/* <FormContainer>
               <Form onSubmit={onSubmit}>
                 <h1>Sign Up</h1>
                 <Col>
@@ -138,9 +149,127 @@ export default function signup() {
                 </Button>
               </Form>
             </FormContainer>
-          </Col>
-        </Row>
-      </Container>
+            */}
+            <form onSubmit={onSubmit}>
+              <MDBCard>
+                <MDBCardBody className="mx-4">
+                  <div className="text-center">
+                    <h3 className="black-text mb-5">
+                      <strong>Sign Up</strong>
+                    </h3>
+                  </div>
+                  <div className="grey-text">
+                    <MDBInput
+                      label="Full name"
+                      icon="user"
+                      group
+                      type="text"
+                      onChange={(e) => setName(e.target.value)}
+                      validate
+                      error="wrong"
+                      success="right"
+                    />
+                    <MDBInput
+                      label="Email"
+                      icon="envelope"
+                      onChange={(e) => setEmail(e.target.value)}
+                      group
+                      type="email"
+                    />
+
+                    <MDBInput
+                      label="Your password"
+                      icon="lock"
+                      group
+                      type="password"
+                      onChange={(e) => setPassword(e.target.value)}
+                      validate
+                      error="wrong"
+                      success="right"
+                    />
+                    <MDBInput
+                      label="Confirm your password"
+                      icon="exclamation-triangle"
+                      group
+                      type="password"
+                      validate
+                      error="wrong"
+                      success="right"
+                    />
+                  </div>
+                  <div className="text-center mb-3">
+                    <MDBBtn
+                      gradient="red"
+                      type="submit"
+                      rounded
+                      className="btn-block z-depth-1a"
+                    >
+                      Register
+                    </MDBBtn>
+                  </div>
+                  <p className="font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-2">
+                    or Register with:
+                  </p>
+                  <div className="row my-3 d-flex justify-content-center">
+                    <MDBBtn
+                      type="button"
+                      color="white"
+                      rounded
+                      className="mr-md-3 z-depth-1a"
+                      onClick={handleSigninGoogle}
+                    >
+                      <MDBIcon
+                        fab
+                        icon="google-plus-g"
+                        className="pink-text text-center"
+                      />
+                    </MDBBtn>
+                    <MDBBtn
+                      type="button"
+                      color="white"
+                      rounded
+                      className="mr-md-3 z-depth-1a"
+                      onClick={handleSigninLinkedIn}
+                    >
+                      <MDBIcon fab icon="linkedin" className="pink-text" />
+                    </MDBBtn>
+                    <MDBBtn
+                      type="button"
+                      color="white"
+                      rounded
+                      className="z-depth-1a"
+                      onClick={handleSigninGithub}
+                    >
+                      <MDBIcon fab icon="github" className="pink-text" />
+                    </MDBBtn>
+                    <MDBBtn
+                      type="button"
+                      color="white"
+                      rounded
+                      className="mr-md-3 z-depth-1a"
+                      onClick={handleSigninFacebook}
+                    >
+                      <MDBIcon
+                        fab
+                        icon="facebook-f"
+                        className="pink-text text-center"
+                      />
+                    </MDBBtn>
+                  </div>
+                </MDBCardBody>
+                <MDBModalFooter className="mx-5 pt-3 mb-1">
+                  <p className="font-small grey-text d-flex justify-content-end">
+                    You already an account?
+                    <Link href="/signin">
+                      <a className="pink-text ml-1">Login</a>
+                    </Link>
+                  </p>
+                </MDBModalFooter>
+              </MDBCard>
+            </form>
+          </MDBCol>
+        </MDBRow>
+      </MDBContainer>
     );
   }
 }

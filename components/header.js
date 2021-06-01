@@ -1,10 +1,18 @@
 import Link from 'next/link';
 import { signIn, signOut, useSession } from 'next-auth/client';
 import Router from 'next/router';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
-import { Nav, Navbar } from 'react-bootstrap';
-
+import {
+  MDBNavbar,
+  MDBNavbarBrand,
+  MDBNavbarNav,
+  MDBNavItem,
+  MDBNavLink,
+  MDBIcon,
+} from 'mdbreact';
+import { Router as Yolo } from 'react-router-dom';
+import { createMemoryHistory } from 'history';
+const history = createMemoryHistory();
 export default function Header() {
   const [session] = useSession();
   const handleSignin = (e) => {
@@ -28,71 +36,96 @@ export default function Header() {
     !session && { label: 'Sign In', href: '/signin' },
     session && { label: 'Profile', href: '/profile' },
     session && { label: 'Sign Out', href: '/signout' },
-  ]
-    .filter((linkConfig) => linkConfig)
-    .map(({ label, href }) => {
-      return (
-        <Nav.Link
-          key={href}
-          onClick={
-            label == 'Sign In'
-              ? handleSignin
-              : label == 'Sign Out'
-              ? handleSignout
-              : label == 'Join'
-              ? handleSignup
-              : handleProfile
-          }
-        >
-          {label}
-        </Nav.Link>
-      );
-    });
+  ];
 
   return (
-    <Navbar bg="light" variant="light">
-      <Link href="/" passHref={true}>
-        <Navbar.Brand>
-          <Image src="/Mp.svg" alt="mp" width="64" height="64" />
-        </Navbar.Brand>
-      </Link>
-      <Nav className="mr-auto">
-        <Link href="https://twitter.com/minorityprogram" passHref={true}>
-          <Nav.Link key={7}>
-            <FontAwesomeIcon icon={['fab', 'twitter']} />
-          </Nav.Link>
+    <Yolo history={history}>
+      <MDBNavbar color="white" dark expand="md">
+        <Link href="/" passHref={true}>
+          <MDBNavbarBrand>
+            <Image src="/Mp.svg" alt="mp" width="64" height="64" />
+          </MDBNavbarBrand>
         </Link>
-        <Link
-          href="https://www.facebook.com/MinorityProgrammers"
-          passHref={true}
-        >
-          <Nav.Link key={6}>
-            <FontAwesomeIcon icon={['fab', 'facebook']} />
-          </Nav.Link>
-        </Link>
-        <Link
-          href="https://www.linkedin.com/company/minority-programmers/"
-          passHref={true}
-        >
-          <Nav.Link key={5}>
-            <FontAwesomeIcon icon={['fab', 'linkedin']} />
-          </Nav.Link>
-        </Link>
-        <Link
-          href="https://www.instagram.com/minorityprogrammers/"
-          passHref={true}
-        >
-          <Nav.Link key={4}>
-            <FontAwesomeIcon icon={['fab', 'instagram']} />
-          </Nav.Link>
-        </Link>
-      </Nav>
-      <Nav className="navi">
-        <Nav.Link key={1}>Service</Nav.Link>
-        <Nav.Link key={2}>Events</Nav.Link>
-        <Nav.Link key={3}>Learn</Nav.Link>
-        {links}
-      </Nav>
-    </Navbar>
+        <MDBNavbarNav left>
+          <MDBNavItem>
+            <MDBNavLink
+              className="waves-effect waves-light "
+              to="https://twitter.com/minorityprogram"
+            >
+              <MDBIcon fab icon="twitter" className="black-text pr-3" />
+            </MDBNavLink>
+          </MDBNavItem>
+          <MDBNavItem>
+            <MDBNavLink
+              className="waves-effect waves-light"
+              to="https://www.facebook.com/MinorityProgrammers"
+            >
+              <MDBIcon fab icon="facebook" className="black-text pr-3" />
+            </MDBNavLink>
+          </MDBNavItem>
+          <MDBNavItem>
+            <MDBNavLink
+              className="waves-effect waves-light"
+              to="https://www.linkedin.com/company/minority-programmers/"
+            >
+              <MDBIcon fab icon="linkedin" className="black-text pr-3" />
+            </MDBNavLink>
+          </MDBNavItem>
+          <MDBNavItem>
+            <MDBNavLink
+              className="waves-effect waves-light"
+              to="https://www.instagram.com/minorityprogrammers/"
+            >
+              <MDBIcon fab icon="instagram" className="black-text pr-3" />
+            </MDBNavLink>
+          </MDBNavItem>
+        </MDBNavbarNav>
+        <MDBNavbarNav right>
+          <MDBNavItem active>
+            <Link
+              href="https://minorityprogrammers.com/services"
+              passHref={true}
+            >
+              <a className="nav-link black-text">Service</a>
+            </Link>
+          </MDBNavItem>
+          <MDBNavItem>
+            <Link href="https://minorityprogrammers.com/events" passHref={true}>
+              <a className="nav-link black-text">Events</a>
+            </Link>
+          </MDBNavItem>
+          <MDBNavItem>
+            <Link href="https://minorityprogrammers.com/learn" passHref={true}>
+              <a className="nav-link black-text">Learn</a>
+            </Link>
+          </MDBNavItem>
+          {session && (
+            <>
+              <MDBNavItem>
+                <Link href="/profile" className="nav-link black-text">
+                  <a className="nav-link black-text">Profile</a>
+                </Link>
+              </MDBNavItem>
+              <MDBNavItem>
+                <Link href="/signout">
+                  <a onClick={handleSignout} className="nav-link black-text">
+                    Signout
+                  </a>
+                </Link>
+              </MDBNavItem>
+            </>
+          )}
+          {!session && (
+            <>
+              <MDBNavItem>
+                <Link href="/signup">
+                  <a className="nav-link black-text">Join</a>
+                </Link>
+              </MDBNavItem>
+            </>
+          )}
+        </MDBNavbarNav>
+      </MDBNavbar>
+    </Yolo>
   );
 }

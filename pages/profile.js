@@ -21,7 +21,6 @@ export default function profile() {
     const data = await fetch(
       `http://localhost:3000/api/user?progLang=${progLang}&nativeLang=${nativeLang}&passions=${passions}`
     );
-    const res = await data.json();
     Router.push('/profile');
   };
   if (typeof window !== 'undefined' && loading) return null;

@@ -4,14 +4,13 @@ import Footer from '../components/footer';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import Head from 'next/head';
-import '../public/static/bootstrap.min.css';
-import '../public/static/header.css';
 import '../public/static/signup.css';
-import '../public/static/index.css';
+import '../public/static/signin.css';
+
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap-css-only/css/bootstrap.min.css';
 import 'mdbreact/dist/css/mdb.css';
-import '../public/static/signin.css';
+
 library.add(fab);
 
 function MyApp({ Component, pageProps }) {
