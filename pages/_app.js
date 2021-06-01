@@ -17,7 +17,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <Provider session={pageProps.session}>
       <Head>
-        <title>Create Next App</title>
+        <title>Minority programmers</title>
         <link rel="icon" href="/favicon.ico" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
