@@ -1,6 +1,6 @@
 import NextAuth from 'next-auth';
 import Providers from 'next-auth/providers';
-// https://minority-programmers-mern-form-test.vercel.app
+
 const options = {
   site: 'https://tmp-nextjs-with-next-auth-app.vercel.app/',
   providers: [
@@ -46,7 +46,7 @@ const options = {
     }),
   ],
   pages: {
-    signIn: '/signin',
+    signIn: 'https://minority-programmers-mern-form-test.vercel.app/profile',
   },
   database: process.env.MONGODB_URI,
   callbacks: {
