@@ -4,6 +4,8 @@ import Link from 'next/link';
 import Message from '../components/message';
 import Image from 'next/image';
 import Router from 'next/router';
+import Loader from '../components/loader';
+
 import {
   MDBContainer,
   MDBRow,
@@ -17,7 +19,7 @@ import {
 } from 'mdbreact';
 
 export default function signup() {
-  const [session] = useSession();
+  const [session, loading] = useSession();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -40,10 +42,11 @@ export default function signup() {
   const onSubmit = async (event) => {
     event.preventDefault();
     const data = await fetch(
-      `http://localhost:3000/api/signup?email=${email}&password=${password}&name=${name}`
+      `https://minority-programmers-mern-form-test.vercel.app/api/signup?email=${email}&password=${password}&name=${name}`
     );
     Router.push('/profile');
   };
+  if (typeof window !== 'undefined' && loading) return <Loader />;
   if (session) {
     return <Message variant="danger">You're already signed in</Message>;
   } else {

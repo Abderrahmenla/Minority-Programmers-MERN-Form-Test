@@ -3,6 +3,7 @@ import { signIn, useSession } from 'next-auth/client';
 import Link from 'next/link';
 import Router from 'next/router';
 import Message from '../components/message';
+import Loader from '../components/loader';
 
 import {
   MDBContainer,
@@ -16,7 +17,7 @@ import {
 } from 'mdbreact';
 
 export default function signin() {
-  const [session] = useSession();
+  const [session, loading] = useSession();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const handleSigninGoogle = (e) => {
@@ -40,6 +41,7 @@ export default function signin() {
     event.preventDefault();
     Router.push(`/profile`);
   };
+  if (typeof window !== 'undefined' && loading) return <Loader />;
   if (session) {
     return <Message variant="danger">You're already signed in</Message>;
   } else {

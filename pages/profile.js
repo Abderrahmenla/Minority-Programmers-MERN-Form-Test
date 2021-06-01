@@ -19,11 +19,11 @@ export default function profile() {
   const submitHandler = async (e) => {
     e.preventDefault();
     const data = await fetch(
-      `http://localhost:3000/api/user?progLang=${progLang}&nativeLang=${nativeLang}&passions=${passions}`
+      `https://minority-programmers-mern-form-test.vercel.app/api/user?progLang=${progLang}&nativeLang=${nativeLang}&passions=${passions}`
     );
     Router.push('/profile');
   };
-  if (typeof window !== 'undefined' && loading) return null;
+  if (typeof window !== 'undefined' && loading) return <Loader />;
   if (!session) return <Message variant="danger">Please sign in</Message>;
   else {
     return (
