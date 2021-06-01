@@ -7,36 +7,21 @@ import {
   MDBNavbarBrand,
   MDBNavbarNav,
   MDBNavItem,
-  MDBNavLink,
   MDBIcon,
 } from 'mdbreact';
 import { Router as Yolo } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
+
 const history = createMemoryHistory();
 export default function Header() {
   const [session] = useSession();
-  const handleSignin = (e) => {
-    e.preventDefault();
-    signIn();
-  };
   const handleSignout = (e) => {
     e.preventDefault();
-    signOut({ callbackUrl: 'http://localhost:3000/signout' });
+    signOut({
+      callbackUrl:
+        'https://minority-programmers-mern-form-test.vercel.app/signout',
+    });
   };
-  const handleSignup = (e) => {
-    e.preventDefault();
-    Router.push('/signup');
-  };
-  const handleProfile = (e) => {
-    e.preventDefault();
-    Router.push('/profile');
-  };
-  const links = [
-    !session && { label: 'Join', href: '/signup' },
-    !session && { label: 'Sign In', href: '/signin' },
-    session && { label: 'Profile', href: '/profile' },
-    session && { label: 'Sign Out', href: '/signout' },
-  ];
 
   return (
     <Yolo history={history}>
